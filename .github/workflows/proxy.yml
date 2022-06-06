@@ -12,7 +12,7 @@ jobs:
     env:
       USERNAME: ${{ secrets.GH_USERNAME }}
       EMAIL: ${{ secrets.GH_EMAIL }}
-      MONTH: 5
+      MONTH: 05
 
     steps:
       - uses: actions/checkout@v3
