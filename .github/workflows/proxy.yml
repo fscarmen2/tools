@@ -19,6 +19,7 @@ jobs:
       - name: Download, Check and Renew
         if: always()
         run: |
+          pip install dos2unix
           for i in $(seq -w 1 30); do
             wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/${{ env.MONTH }}$i.zip
             unzip ${{ env.MONTH }}$i.zip "*.txt" -d ./
