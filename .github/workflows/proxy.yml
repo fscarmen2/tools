@@ -30,7 +30,7 @@ jobs:
           wget -O ./vmessping_linux_$ARCH.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_$ARCH.tar.gz
           
-          dos2unix temp1
+          dos2unix-1 temp1
           sort -u temp1 | grep 'vmess://' > temp2
           
           CHECK=$($(cat temp2))
