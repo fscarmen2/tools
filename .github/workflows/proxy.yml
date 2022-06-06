@@ -26,7 +26,7 @@ jobs:
             rm -f 节点.txt ${{ env.MONTH }}$i.zip
           done
           
-          wget -O ./vmessping_linux_$ARCH.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_$ARCH.tar.gz
+          wget -O ./vmessping_linux_$ARCH.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_$ARCH.tar.gz
           
           dos2unix temp1
