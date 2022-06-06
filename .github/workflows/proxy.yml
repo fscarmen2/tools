@@ -16,6 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - if: always()
       - name: Download, Check and Renew
         run: |
           for i in $(seq -w 1 31); do
