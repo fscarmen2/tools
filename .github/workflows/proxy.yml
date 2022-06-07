@@ -32,6 +32,10 @@ jobs:
           
           sort -u temp1 | grep 'vmess://' > temp2
           
+          ls
+         
+          fine / -iname vmessping
+          
           CHECK=$($(cat temp2))
           for j in ${CHECK[@]}; do
            ./vmessping -allow-insecure -c 1 -o 1 $j && echo $j | tee -a ${GITHUB_WORKSPACE}/proxy
