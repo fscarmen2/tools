@@ -26,26 +26,14 @@ jobs:
             cat 节点.txt >> temp1
             rm -f 节点.txt ${{ env.MONTH }}$i.zip
           done
-          
           wget -O ./vmessping_linux_$ARCH.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_$ARCH.tar.gz
-          
           sort -u temp1 | grep 'vmess://' > temp2
-          echo 1
-          ls
-          
-          echo 2
-          ls ./vmessping
-          
-          echo 3
-          
-          find / -iname vmessping
-          
           CHECK=$($(cat temp2))
           for j in ${CHECK[@]}; do
            ./vmessping -allow-insecure -c 1 -o 1 $j && echo $j | tee -a ${GITHUB_WORKSPACE}/proxy
           done
-          
+
       - name: Upload to REPO
         run: |
           git config --global user.email "${{ env.EMAIL }}"
