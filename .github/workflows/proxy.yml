@@ -31,10 +31,15 @@ jobs:
           tar -xzvf vmessping_linux_$ARCH.tar.gz
           
           sort -u temp1 | grep 'vmess://' > temp2
-          
+          echo 1
           ls
-         
-          fine / -iname vmessping
+          
+          echo 2
+          ls ./vmessping
+          
+          echo 3
+          
+          find / -iname vmessping
           
           CHECK=$($(cat temp2))
           for j in ${CHECK[@]}; do
