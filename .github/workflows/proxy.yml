@@ -31,7 +31,9 @@ jobs:
           sed -e 's/.$//g' temp2
           CHECK=$($(cat temp2))
           for j in ${CHECK[@]}; do
-           ./vmessping -allow-insecure -c 1 -o 1 $j && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
+            if ./vmessping -allow-insecure -c 1 -o 1 $j; then
+              echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
+            fi
           done
 
       - name: Upload to REPO
