@@ -19,19 +19,19 @@ jobs:
       - name: Download, Check and Renew
         if: always()
         run: |
-          pip install dos2unix
           for i in $(seq -w 1 30); do
             wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/${{ env.MONTH }}$i.zip
             unzip ${{ env.MONTH }}$i.zip "*.txt" -d ./
             cat 节点.txt >> temp1
             rm -f 节点.txt ${{ env.MONTH }}$i.zip
           done
-          wget -O ./vmessping_linux_$ARCH.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
-          tar -xzvf vmessping_linux_$ARCH.tar.gz
+          wget -O ./vmessping_linux_amd64.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
+          tar -xzvf vmessping_linux_amd64.tar.gz
           sort -u temp1 | grep 'vmess://' > temp2
+          sed -e 's/.$//g' temp2
           CHECK=$($(cat temp2))
           for j in ${CHECK[@]}; do
-           ./vmessping -allow-insecure -c 1 -o 1 $j && echo $j 
+           ./vmessping -allow-insecure -c 1 -o 1 $j && tee -a ${GITHUB_WORKSPACE}/proxy
           done
 
       - name: Upload to REPO
