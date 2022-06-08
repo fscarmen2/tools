@@ -29,13 +29,14 @@ jobs:
           tar -xzvf vmessping_linux_amd64.tar.gz
           sort -u temp1 | grep 'vmess://' > temp2
           sed -e 's/.$//g' temp2
-          CHECK=$($(cat temp2))
-          for j in ${CHECK[@]}; do
-            if ./vmessping -allow-insecure -c 1 -o 1 $j; then
-              echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
-            fi
-          done
+          cp temp2 ${GITHUB_WORKSPACE}/proxy
 
+#          CHECK=$($(cat temp2))
+#          for j in ${CHECK[@]}; do
+#            if ./vmessping -allow-insecure -c 1 -o 1 $j; then
+#              echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
+#            fi
+#          done
       - name: Upload to REPO
         run: |
           git config --global user.email "${{ env.EMAIL }}"
