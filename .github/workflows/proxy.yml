@@ -19,7 +19,6 @@ jobs:
       - name: Download, Check and Renew
         if: always()
         run: |
-          sudo apt -y update
           sudo apt -y install dos2unix
           wget -O ./vmessping_linux_amd64.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_amd64.tar.gz
@@ -35,7 +34,7 @@ jobs:
           CHECK=($(cat temp2))
           k=0
           for j in ${CHECK[@]}; do
-            ./vmessping -allow-insecure -c 1 -o 1 $j && $((k++)) && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy || true
+            ./vmessping -allow-insecure -c 1 -o 1 $j && $((k++)) && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
           done
           echo "NUM=$k" >> $GITHUB_ENV
           
