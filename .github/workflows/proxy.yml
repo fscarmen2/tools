@@ -32,7 +32,7 @@ jobs:
           done
           dos2unix temp1
           sort -u temp1 | grep 'vmess://' > temp2
-          CHECK=$($(cat temp2))
+          CHECK=($(cat temp2))
           k=0
           for j in ${CHECK[@]}; do
             ./vmessping -allow-insecure -c 1 -o 1 $j && $((k++)) && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy || true
