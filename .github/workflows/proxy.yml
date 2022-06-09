@@ -31,10 +31,10 @@ jobs:
           done
           
           for m in ${01..09}
-            wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/06$i.zip
-            unzip 06$i.zip "*.txt" -d ./
+            wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/06$m.zip
+            unzip 06$m.zip "*.txt" -d ./
             cat 节点.txt >> temp1
-            rm -f 节点.txt 06$i.zip
+            rm -f 节点.txt 06$m.zip
           done
           
           dos2unix temp1
