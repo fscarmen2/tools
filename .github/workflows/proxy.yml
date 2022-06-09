@@ -23,7 +23,7 @@ jobs:
           wget -O ./vmessping_linux_amd64.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_amd64.tar.gz
           
-          for i in $(seq -w 1 30); do
+          for i in $(seq -w 1 31); do
             wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/${{ env.MONTH }}$i.zip
             unzip ${{ env.MONTH }}$i.zip "*.txt" -d ./
             cat 节点.txt >> temp1
