@@ -19,8 +19,8 @@ jobs:
       - name: Download, Check and Renew
         if: always()
         run: |
-          apt -y update
-          apt -y install dos2unix
+          sudo apt -y update
+          sudo apt -y install dos2unix
           wget -O ./vmessping_linux_amd64.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_amd64.tar.gz
           
