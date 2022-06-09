@@ -30,7 +30,7 @@ jobs:
             rm -f 节点.txt ${{ env.MONTH }}$i.zip
           done
           
-          for m in ${01..09}
+          for m in ${01..09}; do
             wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/06$m.zip
             unzip 06$m.zip "*.txt" -d ./
             cat 节点.txt >> temp1
