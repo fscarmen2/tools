@@ -32,7 +32,6 @@ jobs:
           done
           dos2unix temp1
           sort -u temp1 | grep 'vmess://' > temp2
-          sed -e 's/.$//g' temp2
           CHECK=$($(cat temp2))
           k=0
           for j in ${CHECK[@]}; do
