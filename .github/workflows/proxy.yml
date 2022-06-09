@@ -19,21 +19,31 @@ jobs:
       - name: Download, Check and Renew
         if: always()
         run: |
-          for i in $(seq -w 1 30); do
-            wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/${{ env.MONTH }}$i.zip
-            unzip ${{ env.MONTH }}$i.zip "*.txt" -d ./
-            cat 节点.txt >> temp1
-            rm -f 节点.txt ${{ env.MONTH }}$i.zip
-          done
+        
           wget -O ./vmessping_linux_amd64.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_amd64.tar.gz
-          sort -u temp1 | grep 'vmess://' > temp2
-          sed -e 's/.$//g' temp2
-          CHECK=$($(cat temp2))
-          for j in ${CHECK[@]}; do
-            ./vmessping -allow-insecure -c 1 -o 1 $j
-            [[ $? = 0 ]] && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
-          done
+          echo test1
+          ./vmessping -c 1 -o 1 vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIue+juWbvSjmrKLov47orqLpmIVZb3V0dWJl56C06Kej6LWE5rqQ5ZCbKSIsDQogICJhZGQiOiAibHUxLmdvZ29nb28uY3lvdSIsDQogICJwb3J0IjogIjQ0MyIsDQogICJpZCI6ICJkYjVkMWFhMy05MDhiLTQ0ZDEtYmUwYS00ZTZhOGQ0ZTRjZGEiLA0KICAiYWlkIjogIjAiLA0KICAic2N5IjogImF1dG8iLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogImx1MS5nb2dvZ29vLmN5b3UiLA0KICAicGF0aCI6ICIvZ28iLA0KICAidGxzIjogInRscyIsDQogICJzbmkiOiAiIiwNCiAgImFscG4iOiAiIg0KfQ==
+          echo test2
+          ./vmessping -c 1 -o 1 vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuS/hOe9l+aWryjmrKLov47orqLpmIVZb3V0dWJl56C06Kej6LWE5rqQ5ZCbKSIsDQogICJhZGQiOiAiMTg1LjE5NS4yNi4xOTMiLA0KICAicG9ydCI6ICIyMjUyNiIsDQogICJpZCI6ICI5OWFiN2ZmMS0xNDdkLTM0MWYtYjQyMi0wMTAzOTJiNTg5YTYiLA0KICAiYWlkIjogIjE2IiwNCiAgInNjeSI6ICJhdXRvIiwNCiAgIm5ldCI6ICJ0Y3AiLA0KICAidHlwZSI6ICJub25lIiwNCiAgImhvc3QiOiAiIiwNCiAgInBhdGgiOiAiL3YycmF5IiwNCiAgInRscyI6ICIiLA0KICAic25pIjogIiINCn0=
+          echo test3
+          ./vmessping -c 1 -o 1 vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIue+juWbvSjmrKLov47orqLpmIVZb3V0dWJl56C06Kej6LWE5rqQ5ZCbKSIsDQogICJhZGQiOiAibHUxLmdvZ29nb28uY3lvdSIsDQogICJwb3J0IjogIjQ0MyIsDQogICJpZCI6ICJkYjVkMWFhMy05MDhiLTQ0ZDEtYmUwYS00ZTZhOGQ0ZTRjZGEiLA0KICAiYWlkIjogIjAiLA0KICAic2N5IjogImF1dG8iLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogImx1MS5nb2dvZ29vLmN5b3UiLA0KICAicGF0aCI6ICIvZ28iLA0KICAidGxzIjogInRscyIsDQogICJzbmkiOiAiIiwNCiAgImFscG4iOiAiIg0KfQ==
+          
+#          for i in $(seq -w 1 30); do
+#            wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/${{ env.MONTH }}$i.zip
+#            unzip ${{ env.MONTH }}$i.zip "*.txt" -d ./
+#            cat 节点.txt >> temp1
+#            rm -f 节点.txt ${{ env.MONTH }}$i.zip
+#          done
+
+        
+#          sort -u temp1 | grep 'vmess://' > temp2
+#          sed -e 's/.$//g' temp2
+#          CHECK=$($(cat temp2))
+#          for j in ${CHECK[@]}; do
+#            ./vmessping -allow-insecure -c 1 -o 1 $j
+#            [[ $? = 0 ]] && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
+#          done
 
       - name: Upload to REPO
         run: |
