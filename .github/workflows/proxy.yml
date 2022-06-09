@@ -19,7 +19,8 @@ jobs:
       - name: Download, Check and Renew
         if: always()
         run: |
-        
+          apt -y update
+          apt -y install dos2unix
           wget -O ./vmessping_linux_amd64.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_amd64.tar.gz
           
@@ -29,7 +30,7 @@ jobs:
             cat 节点.txt >> temp1
             rm -f 节点.txt ${{ env.MONTH }}$i.zip
           done
-    
+          dos2unix temp1
           sort -u temp1 | grep 'vmess://' > temp2
           sed -e 's/.$//g' temp2
           CHECK=$($(cat temp2))
