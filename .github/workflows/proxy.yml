@@ -29,6 +29,14 @@ jobs:
             cat 节点.txt >> temp1
             rm -f 节点.txt ${{ env.MONTH }}$i.zip
           done
+          
+          for m in ${01..09}
+            wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/06$i.zip
+            unzip 06$i.zip "*.txt" -d ./
+            cat 节点.txt >> temp1
+            rm -f 节点.txt 06$i.zip
+          done
+          
           dos2unix temp1
           sort -u temp1 | grep 'vmess://' > temp2
           CHECK=($(cat temp2))
@@ -36,6 +44,8 @@ jobs:
           for j in ${CHECK[@]}; do
             ./vmessping -allow-insecure -c 1 -o 1 $j && $((k++)) && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
           done
+          
+          rm -f temp{1,2} vmessping*
           echo "NUM=$k" >> $GITHUB_ENV
           
       - name: Upload to REPO
