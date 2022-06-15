@@ -22,7 +22,7 @@ jobs:
           sudo apt -y install dos2unix
           wget -O ./vmessping_linux_amd64.tar.gz https://github.com/fscarmen/tools/releases/download/VMessPing/vmessping_linux_amd64.tar.gz
           tar -xzvf vmessping_linux_amd64.tar.gz        
-          for m in $(seq -w 12 15); do
+          for m in $(seq -w 14 15); do
             wget -N https://github.com/pojiezhiyuanjun/freev2/raw/master/06$m.zip
             unzip 06$m.zip "*.txt" -d ./
             cat 节点.txt >> temp1
@@ -45,5 +45,5 @@ jobs:
           git config --global user.email "${{ env.EMAIL }}"
           git config --global user.name "${{ env.USERNAME }}"
           git add .
-          git commit -m "Update ${{ env.NUM }} proxies on $(date "+%Y/%m/%d %H:%M:%S")"
+          git commit -m "Update ${{ env.NUM }} proxies on $(date "+%Y/%m/%d")"
           git push
