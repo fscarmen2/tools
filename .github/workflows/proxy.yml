@@ -34,7 +34,7 @@ jobs:
           CHECK=($(cat temp2))
           k=0
           for j in ${CHECK[@]}; do
-            ./vmessping -allow-insecure -c 1 -o 1 $j && $((k++)) && echo $i | tee -a ${GITHUB_WORKSPACE}/proxy
+            ./vmessping -allow-insecure -c 1 -o 1 $j && $((k++)) && echo $j | tee -a ${GITHUB_WORKSPACE}/proxy
           done
           
           rm -f temp{1,2} vmessping*
