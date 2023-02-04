@@ -28,12 +28,12 @@ if [ ! $(type -p python2) ]; then
     ${PACKAGE_INSTALL[int]} python3
   fi
   [ ! $(type -p wget) ] && ( ${PACKAGE_UPDATE[int]}; ${PACKAGE_INSTALL[int]} wget )
-  wget https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py -O /bin/systemctl
+  wget https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py -O /usr/bin/systemctl
 else
   [ ! $(type -p wget) ] && ( ${PACKAGE_UPDATE[int]}; ${PACKAGE_INSTALL[int]} wget )
-  wget https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py -O /bin/systemctl
+  wget https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py -O /usr/bin/systemctl
 fi
 
-chmod a+x /bin/systemctl
+chmod a+x /usr/bin/systemctl
 
 [ -e /bin/systemctl ] && echo -e "\n\033[32m\033[01m Systemctl-py installation is complete. \033[0m\n" || echo -e "\n\033[31m Systemctl-py install failed. \033[0m\n"
